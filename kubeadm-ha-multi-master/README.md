@@ -100,7 +100,7 @@ keep the Master & worker commands to join other master nodes and worker nodes.
 ## Join other nodes to the cluster (kmaster2 & kworker1)
 > Use the respective kubeadm join commands you copied from the output of kubeadm init command on the first master.
 
-> IMPORTANT: You also need to pass --apiserver-advertise-address=172.16.16.101 to the join command when you join the other master node.
+> IMPORTANT: You also need to pass --apiserver-advertise-address=172.16.16.102 to the join command when you join the other master node.
 
 ##### Deploy Calico network
 ```
