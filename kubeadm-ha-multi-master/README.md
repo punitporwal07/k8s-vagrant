@@ -95,17 +95,17 @@ apt update && apt install -y kubeadm=1.19.2-00 kubelet=1.19.2-00 kubectl=1.19.2-
 ```
 kubeadm init --control-plane-endpoint="172.16.16.100:6443" --upload-certs --apiserver-advertise-address=172.16.16.101 --pod-network-cidr=192.168.0.0/16
 ```
-Copy the commands to join other master nodes and worker nodes.
-##### Deploy Calico network
-```
-kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://docs.projectcalico.org/v3.15/manifests/calico.yaml
-```
+keep the Master & worker commands to join other master nodes and worker nodes.
 
 ## Join other nodes to the cluster (kmaster2 & kworker1)
 > Use the respective kubeadm join commands you copied from the output of kubeadm init command on the first master.
 
-> IMPORTANT: You also need to pass --apiserver-advertise-address to the join command when you join the other master node.
+> IMPORTANT: You also need to pass --apiserver-advertise-address=172.16.16.101 to the join command when you join the other master node.
 
+##### Deploy Calico network
+```
+kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://docs.projectcalico.org/v3.15/manifests/calico.yaml
+```
 ## Downloading kube config to your local machine
 On your host machine
 ```
@@ -116,6 +116,7 @@ Password for root account is kubeadmin (if you used my Vagrant setup)
 
 ## Verifying the cluster
 ```
+kubectl config view
 kubectl cluster-info
 kubectl get nodes
 kubectl get cs
